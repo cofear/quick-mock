@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <sys/time.h>
+
+
+void buttle_sort(int arr[], int len)
+{
+	int i;
+	int j;
+
+	for (i = 0;i < len; i++)
+	{
+		for (j = len - 1; j > i; j--)
+		{
+			if (arr[j] < arr[j-1])
+			{
+				int tmp = arr[j];
+				arr[j] = arr[j-1];
+				arr[j-1] = tmp;
+			}
+
+		}
+	}
+}
+
+void print(int arr[], int len, const char msg)
+{
+
+}
+
+int main( void )
+{
+	int len;
+	struct timeval start;
+	struct timeval end;
+
+
+	srand(time(NULL));
+
+	printf("length\n");
+	scanf("%d", &len);
+
+	int *p = malloc(sizeof(int) * len);
+
+	for (i = 0; i < len; i++)
+		p[i] = rand() % 1000 + 1;
+	print(p, len);
+
+	gettimeofday(&start, NULL);
+	buttle_sort(p, len);
+	gettimeofday(&end, NULL);
+
+	suseconds_t st = (end.tv_sec * 1000 + end.tv_usec) - (start.tv_sec * 1000 + start.tv_usec) 
+	printf("Time:  %d:%d\n", st/1000, st%1000);
+
+}
